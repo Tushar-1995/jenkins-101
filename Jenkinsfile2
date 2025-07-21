@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo "Building.."
                 bat '''
-                echo "build done"
+                echo "build done again"
                 '''
             }
         }
@@ -16,7 +16,7 @@ pipeline {
             steps {
                 echo "Testing.."
                 bat '''
-                echo "testing done"
+                echo "testing done again"
                 '''
             }
         }
