@@ -1,0 +1,39 @@
+pipeline {
+    agent { 
+        node {
+            label 'docker-agent-python'
+        }
+    }
+    triggers {
+        pollSCM '* * * * *'
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building.."
+                powershell '''
+                cd myapp
+                python -m pip install -r requirements.txt
+                '''
+            }
+        }
+        stage('Test') {
+            steps {
+                echo "Testing.."
+                powershell '''
+                cd myapp
+                python hello.py
+                python hello.py --name=Brad
+                '''
+            }
+        }
+        stage('Deliver') {
+            steps {
+                echo 'Deliver....'
+                powershell '''
+                echo "doing delivery stuff.."
+                '''
+            }
+        }
+    }
+}
